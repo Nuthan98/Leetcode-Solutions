@@ -1,5 +1,5 @@
 public class Solution {
-    public int[] NextPermutation(int[] nums) {
+    public void NextPermutation(int[] nums) {
         int ind = -1;
         for(int i=nums.Length-2; i>=0; i--)
         {
@@ -12,7 +12,7 @@ public class Solution {
         if(ind == -1)
         {
             Array.Reverse(nums); 
-            return nums;
+            return;
         }
         for(int i=nums.Length-1; i>ind; i--)
         {
@@ -25,7 +25,6 @@ public class Solution {
             }
         }
         Array.Reverse(nums, ind + 1, nums.Length - ind - 1);
-        return nums;
     }
  
 }
