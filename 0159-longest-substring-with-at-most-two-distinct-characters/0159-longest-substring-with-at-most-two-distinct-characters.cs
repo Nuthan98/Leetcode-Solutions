@@ -1,41 +1,30 @@
-public class Solution {
-    public int LengthOfLongestSubstringTwoDistinct(string s) {
+public class Solution
+{
+    public int LengthOfLongestSubstringTwoDistinct(string s)
+    {
         int maxLength = 0;
         int l = 0;
-        int r = 0;
-        Dictionary<char, int> res = new Dictionary<char, int>();
 
-        while(r<s.Length)
+        Dictionary<char, int> map = new Dictionary<char, int>();
+
+        for (int r = 0; r < s.Length; r++)
         {
-            if(res.ContainsKey(s[r]))
-            {
-                int count = res[s[r]];
-                count++;
-                res[s[r]] = count;
-            }
-            else
-            {
-                res[s[r]] = 1;
-            }
-            r++;
+            map.TryGetValue(s[r], out int count);
+            map[s[r]] = count + 1;
 
-            if(res.Count > 2)
+            while (map.Count > 2)
             {
-                int count = res[s[l]];
-                count--;
-                res[s[l]] = count;
+                map[s[l]]--;
 
-                if(res[s[l]]==0)
-                    res.Remove(s[l]);
+                if (map[s[l]] == 0)
+                    map.Remove(s[l]);
 
                 l++;
             }
 
-            if(maxLength< r-l)
-            {
-                maxLength = r-l;
-            }
+            maxLength = Math.Max(maxLength, r - l + 1);
         }
+
         return maxLength;
     }
 }
