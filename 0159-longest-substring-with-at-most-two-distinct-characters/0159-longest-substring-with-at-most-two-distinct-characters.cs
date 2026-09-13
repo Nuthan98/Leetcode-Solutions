@@ -19,7 +19,7 @@ public class Solution {
             }
             r++;
 
-            while(res.Count > 2)
+            if(res.Count > 2)
             {
                 int count = res[s[l]];
                 count--;
