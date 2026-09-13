@@ -12,7 +12,7 @@ public class Solution
             map.TryGetValue(s[r], out int count);
             map[s[r]] = count + 1;
 
-            while (map.Count > 2)
+            if (map.Count > 2)
             {
                 map[s[l]]--;
 
